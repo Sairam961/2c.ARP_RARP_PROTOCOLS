@@ -46,7 +46,34 @@ while True:
 <img width="1919" height="545" alt="image" src="https://github.com/user-attachments/assets/8624ca76-0e13-44b5-aee1-721841cdde5e" />
 
 ## PROGRAM - RARP
+client
+```
+import socket           
+s=socket.socket()                
+s.connect(('localhost',8000))                
+while True:               
+    ip=input("Enter MAC Address : ")                
+    s.send(ip.encode())                   
+    print("IP Address",s.recv(1024).decode())
+```
+server
+```
+import socket            
+s=socket.socket()            
+s.bind(('localhost',8000))                 
+s.listen(5)            
+c,addr=s.accept()                       
+address={"F8:3D:C6:CE:5B:6E":"10.248.110.146"};             
+while True:              
+    ip=c.recv(1024).decode()            
+    try:                
+       c.send(address[ip].encode())             
+    except KeyError:            
+       c.send("Not Found".encode())
+```
 ## OUPUT -RARP
+<img width="2212" height="612" alt="image" src="https://github.com/user-attachments/assets/cc6fde2d-0f02-4b65-b6c0-a0a4d0d9d961" />
+
 ## RESULT
 Thus, the python program for simulating ARP protocols using TCP was successfully 
 executed.
